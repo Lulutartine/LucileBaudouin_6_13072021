@@ -1,0 +1,21 @@
+{
+  "name": "lucilebaudouin_6_13072021",
+  "version": "1.0.0",
+  "description": "fisheye",
+  "main": "app.js",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss:./css/style.css",
+    "prefix": "postcss ./css/style.css --use autoprefixer -d ./css/prefixed/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lulutartine/LucileBaudouin_6_13072021.git"
+  },
+  "author": "lb",
+  "license": "ISC",
+  "browserslist": "last 30 versions",
+  "bugs": {
+    "url": "https://github.com/Lulutartine/LucileBaudouin_6_13072021/issues"
+  },
+  "homepage": "https://github.com/Lulutartine/LucileBaudouin_6_13072021#readme"
+}

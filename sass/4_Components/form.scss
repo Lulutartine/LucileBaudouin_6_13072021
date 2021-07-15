@@ -1,0 +1,90 @@
+.bground {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #DB8876;
+    width: 75%;
+    max-width: 590px;
+    height: auto;
+    margin: auto;
+    border-radius: 3px;
+    animation: formOpen .3s;
+    .content {
+        position: relative;
+        display: flex;
+        margin: 25px;
+        margin-left: 30px;
+        padding-top: 25px;
+        .cross {
+            position: absolute;
+            right: -25px;
+            top: 20px;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transform: scale(0.7);
+        }
+        .cross:before,
+        .cross:after {
+            position: absolute;
+            left: 15px;
+            content: "";
+            height: 100%;
+            width: 3px;
+            background-color: #fff;
+        }
+        .cross:before {
+            transform: rotate(45deg);
+        }
+        
+        .cross:after {
+            transform: rotate(-45deg);
+        }
+        .contactMe {
+            font-size: 3em;
+        }
+        .titleName {
+            font-size: 3em;
+        }
+    }
+    .modalBody {
+        text-align: start;
+        .form-data {
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            margin: auto;
+            label {
+                margin-bottom: 5px;
+                font-size: 1.4em;
+            }
+            
+            input, textarea {
+                margin-bottom: 10px;
+                border: none;
+                border-radius: 3px;
+                height: 40px;
+                font-size: 1.2em;
+                outline: none;
+            }
+            textarea {
+                height: 170px;
+                overflow-wrap: break-word;
+                font-size: 19px;
+            }
+        }
+    }
+    .send {
+        border: none;
+        margin: 25px 35px;
+        border-radius: 5px;
+        width: 170px;
+        height: 69px;
+        background-color: #901C1C;
+        color: #fff;
+        font-size: 1em;
+        cursor: pointer;
+    }
+}
