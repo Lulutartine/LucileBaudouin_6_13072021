@@ -26,6 +26,9 @@
         }
     }
 }
+ul {
+    list-style-type: none;
+}
 .tagDesign {
     display: flex;
     justify-content: center;
@@ -33,7 +36,7 @@
     .tagDesign__tag {
         border: solid 1px $lightGrey;
         border-radius: 20px;
-        padding: 0 8px;
+        padding: 4px 7px;
         margin: 2px;
         color: $firebrick;
         cursor: pointer;

@@ -31,6 +31,10 @@ body {
   font-size: 1.5em;
 }
 
+ul {
+  list-style-type: none;
+}
+
 .tagDesign {
   display: flex;
   justify-content: center;
@@ -39,7 +43,7 @@ body {
 .tagDesign .tagDesign__tag {
   border: solid 1px #C4C4C4;
   border-radius: 20px;
-  padding: 0 8px;
+  padding: 4px 7px;
   margin: 2px;
   color: #911616;
   cursor: pointer;
