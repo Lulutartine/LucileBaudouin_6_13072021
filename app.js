@@ -97,9 +97,9 @@ const createCard = (photographerData) => {
       place.classList.add('local');
       place.innerHTML = photographerData.city + ', ' + photographerData.country;
    
-      const depiction = document.createElement('span');
-      depiction.classList.add('depiction');
-      depiction.innerHTML = photographerData.tagline;
+      const descript2 = document.createElement('span');
+      descript2.classList.add('descript2');
+      descript2.innerHTML = photographerData.tagline;
    
       const price = document.createElement('span');
       price.classList.add('price');
@@ -112,7 +112,7 @@ const createCard = (photographerData) => {
       card.append(image);
    
       para.append(place);
-      para.append(depiction);
+      para.append(descript2);
       para.append(price);
    
       cardDescription.append(nameTitle);
@@ -132,16 +132,34 @@ const createCard = (photographerData) => {
    
       card.append(cardDescription);
    
-   // ON INSÈRE TOUT DANS LE DOM
-      const main = document.querySelector('main');
-      main.append(card);
+
+// ON INSÈRE TOUT DANS LE DOM
+      let photographers = [];
+
+      async function showPhotographers1() {
+         photographers = await getPhotographers();
+         showPhotographers2(photographers);
+         }
+      showPhotographers1();
+
+      function showPhotographers2(photographers) {
+      let section = document.querySelector("main");
+      section.innerText = "";
+         for (let photographer of photographers) {
+            let article = fillArticle(photographer);
+            section.appendChild(article);
+         }
+      }
    }
 
-const initIndex = (data) => {
+
+// [version prec.] ON INSÈRE TOUT DANS LE DOM 
+      //const main = document.querySelector('main');
+      //main.append(card);
+//const initIndex = (data) => {
       //boucle pour chaque photographes
-      data.photographers.forEach(photographer => {
-         createCard(photographer);
-      });
-      
-      createHeader(data)
-   };
+     // data.photographers.forEach(photographer => {
+         //createCard(photographer);
+      //});
+      //createHeader(data)
+   //};
