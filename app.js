@@ -8,6 +8,18 @@ fetch("./data.json")
 });
 
 // ________ DOM ELEMENTS  ________ //
+
+// ON INSÈRE DANS LE DOM 
+   const main = document.querySelector('main');
+      main.append(card);
+   const initIndex = (data) => {
+      //boucle pour chaque photographes
+     data.photographers.forEach(photographer => {
+         createCard(photographer);
+      });
+      createHeader(data)
+   };
+
 const createHeader = (data) => {
    // ON FABRIQUE LES BALISES
       const body = document.querySelector("body");
@@ -131,35 +143,4 @@ const createCard = (photographerData) => {
       cardDescription.append(ul);
    
       card.append(cardDescription);
-   
-
-// ON INSÈRE TOUT DANS LE DOM
-      let photographers = [];
-
-      async function showPhotographers1() {
-         photographers = await getPhotographers();
-         showPhotographers2(photographers);
-         }
-      showPhotographers1();
-
-      function showPhotographers2(photographers) {
-      let section = document.querySelector("main");
-      section.innerText = "";
-         for (let photographer of photographers) {
-            let article = fillArticle(photographer);
-            section.appendChild(article);
-         }
-      }
    }
-
-
-// [version prec.] ON INSÈRE TOUT DANS LE DOM 
-      //const main = document.querySelector('main');
-      //main.append(card);
-//const initIndex = (data) => {
-      //boucle pour chaque photographes
-     // data.photographers.forEach(photographer => {
-         //createCard(photographer);
-      //});
-      //createHeader(data)
-   //};
