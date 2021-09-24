@@ -1,16 +1,16 @@
 fetch("./data.json")
    .then(response => { 
-      return response.json();
+      return response.json()
    }) 
    .then(response2 => {
-	   sessionStorage.setItem('data', JSON.stringify(response2));
+	   sessionStorage.setItem('data', JSON.stringify(response2))
    init(response2);
 });
 
 // ________ DOM ELEMENTS  ________ //
 
 // ON INSÈRE DANS LE DOM 
-   const main = document.querySelector('main');
+   const main = document.querySelector('mainContent');
       main.append(card);
    const initIndex = (data) => {
       //boucle pour chaque photographes
