@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "sass": "sass --watch ./sass/main.scss:./css/style.css",
-    "prefix": "postcss ./css/style.css --use autoprefixer -d ./css/prefixed/"
+    "prefix": "postcss ./css/style.css --use autoprefixer -d ./css/prefixed/",
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Lulutartine/LucileBaudouin_6_13072021/issues"
   },
-  "homepage": "https://github.com/Lulutartine/LucileBaudouin_6_13072021#readme"
+  "homepage": "https://github.com/Lulutartine/LucileBaudouin_6_13072021#readme",
+  "devDependencies": {
+    "webpack": "^5.55.1"
+  }
 }
