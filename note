@@ -1,0 +1,1 @@
+./node_modules/.bin/webpack" assets/js/app.js --output dist/main.js --watch
