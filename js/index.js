@@ -1,4 +1,4 @@
-import { initIndex } from "./initIndex.js";
+import { initIndex } from './initIndex.js';
 
 fetch('./data.json')
 	.then(response => {

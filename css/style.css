@@ -55,6 +55,11 @@ ul {
   transform: translateY(-4px);
 }
 
+#main {
+  display: flex;
+  justify-content: space-around;
+}
+
 .mainContent {
   display: flex;
   justify-content: space-around;

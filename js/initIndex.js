@@ -5,12 +5,12 @@ export const initIndex = (data) => {
 		createCard(photographer);
 	});
 	
-	createHeader(data)
-	onClickTagsListHeader(data)
+	createHeader(data);
+	onClickTagsListHeader(data);
 };
 // CREATE HEADER
 const createHeader = (data) => {
-	const header = document.querySelector("header");
+	const header = document.querySelector('header');
 
 	const hidden = document.createElement('div');
 	hidden.classList.add('hidden');
@@ -22,7 +22,7 @@ const createHeader = (data) => {
 	const main = document.querySelector('main');
 	main.addEventListener('mouseover', function() {
 		hidden.hidden = false;
-	})
+	});
 
 
 	const logoLink = document.createElement('a');
@@ -44,13 +44,13 @@ const createHeader = (data) => {
 	const fullTags = [];
 	data.photographers.forEach(photographer => {
 		photographer.tags.forEach(tag => {
-			fullTags.push(tag)
+			fullTags.push(tag);
 		});
 	});
 
 	const uniqueTags = fullTags.filter(function (item, pos) {
 		return fullTags.indexOf(item) == pos;
-	})
+	});
 
 	for (let i = 0; i < uniqueTags.length; i++) {
 		const tag = uniqueTags[i];
@@ -75,7 +75,7 @@ const createHeader = (data) => {
 	header.append(h1);
 
 	hidden.append(hiddenLink);
-}
+};
 // PHOTOGRAPHERS CARDS
 const createCard = (photographerData) => {
 	const card = document.createElement('a');
@@ -136,7 +136,7 @@ const createCard = (photographerData) => {
 
 	const main = document.querySelector('main');
 	main.append(card);
-}
+};
 // SORT PHOTOGRAPHERS BY TAGS
 const onClickTagsListHeader = (data) => {
 	//Quand je click sur un tag, si la card avec l'id: (photoId) ne contient pas le tag, alors tu passes cette card en Display = 'none';
@@ -148,10 +148,10 @@ const onClickTagsListHeader = (data) => {
 
 			//Reset les cards si on click a nouveaux sur le tag selectionné
 			if (tag.classList.contains('selectedTag')) {
-					tag.classList.remove('selectedTag');
+				tag.classList.remove('selectedTag');
 
-					getCards.forEach(card => {
-						card.style.display = 'block';
+				getCards.forEach(card => {
+					card.style.display = 'block';
 				});
 			} else {
 
@@ -200,4 +200,4 @@ const onClickTagsListHeader = (data) => {
 			}
 		});
 	});
-}
+};

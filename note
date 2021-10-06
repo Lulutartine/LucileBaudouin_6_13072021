@@ -1,2 +1,3 @@
-./node_modules/.bin/webpack ./assets/js/app.js dist/main.js --watch
+yarn run eslint ./js/index.js
+yarn run eslint ./js/index.js --fix
 

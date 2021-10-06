@@ -17,7 +17,7 @@ export const getMedias = (data, url_id) => {
 			medias.push(media); // tri les media qui ont le même id que l'url
 		}
 	});
-	return medias
+	return medias;
 };
 /**
  * 
@@ -33,5 +33,5 @@ export const getPhotographer = (data, url_id) => {
 			photographer = details;
 		}
 	});
-	return photographer
+	return photographer;
 };
