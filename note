@@ -1,3 +1,4 @@
 yarn run eslint ./js/index.js
 yarn run eslint ./js/index.js --fix
 
+npm eslint ./js/index.js -v
