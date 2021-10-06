@@ -58,6 +58,7 @@ ul {
 #main {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .mainContent {
@@ -351,6 +352,9 @@ h2 {
 main {
   opacity: 1;
   margin-top: 75px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .photoFrame {
