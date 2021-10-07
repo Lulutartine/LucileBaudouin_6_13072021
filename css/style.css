@@ -1,38 +1,104 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+    v2.0 | 20110126
+    License: none (public domain)
+*/
+html, body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: auto;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, .lightbox .contentLB video, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, span {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
 body {
   font-family: sans-serif;
 }
 
-.banner {
+header {
   display: grid;
   grid-template-columns: auto auto auto;
-  padding: 30px 10px 0px 10px;
+  grid-template-rows: auto auto;
+  padding: 0 10px 0px 10px;
   width: 85%;
-  margin: auto;
+  margin: 20px auto;
 }
-.banner .logo {
+header .logo {
+  grid-area: logo;
   grid-column: 1;
+  grid-row: 2;
   max-width: 260px;
   min-width: 180px;
 }
-.banner .logo img {
+header .logo img, header .logo .lightbox .contentLB video, .lightbox .contentLB header .logo video {
   width: 100%;
 }
-.banner .topNav {
+header .topNav {
+  grid-area: topNav;
   margin: auto;
   grid-column: 2;
+  grid-row: 2;
 }
-.banner .mainHeader {
+header h1 {
+  grid-area: h1;
   grid-column: 3;
+  grid-row: 2;
   max-width: 260px;
-  margin: auto 20px;
+  margin: 20px 20px;
   color: #911616;
-}
-.banner .mainHeader h1 {
   font-size: 1.5em;
-}
-
-ul {
-  list-style-type: none;
 }
 
 .tagDesign {
@@ -40,27 +106,39 @@ ul {
   justify-content: center;
   flex-wrap: wrap;
 }
-.tagDesign .tagDesign__tag {
+.tagDesign__tag {
   border: solid 1px #C4C4C4;
   border-radius: 20px;
-  padding: 4px 7px;
+  padding: 5px 8px;
   margin: 2px;
   color: #911616;
   cursor: pointer;
   transition: 0.3s;
+  background-color: #fff;
+  font-size: 1em;
 }
-.tagDesign .tagDesign__tag:hover {
+.tagDesign__tag:hover {
   box-shadow: #C4C4C4 2px 2px 5px 2px;
-  transform: scale3d(2 2);
-  transform: translateY(-4px);
+}
+.tagDesign__tag2 {
+  border: solid 1px #C4C4C4;
+  border-radius: 20px;
+  padding: 5px 8px;
+  margin: 2px;
+  color: #911616;
+  transition: 0.3s;
+  background-color: #fff;
+  font-size: 1em;
 }
 
-#main {
-  display: flex;
-  justify-content: space-around;
+.selectedTag {
+  background-color: #911616;
+  color: #fff;
+  box-shadow: #C4C4C4 2px 2px 5px 2px;
+  transition: 0.3s;
 }
 
-.mainContent {
+main {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -69,109 +147,33 @@ ul {
 }
 
 .hidden {
-  display: none;
+  grid-column: 2;
+  grid-row: 1;
   background-color: #da8775;
   border-radius: 5px;
-  height: 30px;
-  width: 182px;
+  height: 25px;
+  width: 180px;
   margin: auto;
+  margin-bottom: 15px;
+  padding-top: 10px;
   text-align: center;
 }
-
 .hidden a {
   color: #000;
   font-family: sans-serif;
+  font-weight: bold;
 }
 
 .mainFlux {
   display: none;
 }
 
-@media screen and (max-width: 700px) {
-  .banner {
-    grid-template-columns: auto 0 auto;
-    grid-template-rows: auto 120px;
-    padding: 25px 0px 25px 5px;
-  }
-  .banner .topNav {
-    grid-row-start: 2;
-    grid-column: 1/4;
-    width: 90%;
-    margin: auto;
-  }
-  .banner .topNav .tagDesign {
-    width: auto;
-    height: auto;
-    font-size: 4vw;
-  }
-  .banner .mainHeader {
-    text-align: end;
-    grid-column: 3;
-    font-size: 2.3vw;
-    padding-right: 10px;
-  }
-}
-@media screen and (max-width: 1024px) {
-  .divTitle {
-    width: 100%;
-    padding: 0;
-  }
-  .divTitle h2 {
-    margin: 0;
-  }
-
-  .contact {
-    display: none;
-  }
-
-  .contact2 {
-    display: block;
-  }
-
-  .album {
-    justify-content: center;
-  }
-}
-@media screen and (max-width: 775px) {
-  .filter {
-    display: none;
-  }
-
-  .album {
-    text-align: center;
-  }
-}
-@media screen and (max-width: 550px) {
-  .photoFrame {
-    background-color: #fff;
-    padding: 0;
-  }
-  .photoFrame .photographerFace img {
-    width: 40vw;
-    height: 40vw;
-    border-radius: 40vw;
-  }
-  .photoFrame .zoneTxt {
-    width: 70%;
-  }
-  .photoFrame .zoneTxt .divTitle h2 {
-    margin: 0;
-    font-size: 10vw;
-  }
-
-  .album .albumPhoto {
-    padding: 0;
-  }
-  .album .subtitle .blockLike .heart .heart img {
-    width: 100%;
-  }
-}
 /********CARDS********/
 .cards, .card2 {
   position: relative;
   display: block;
   width: 27%;
-  min-width: 350px;
+  min-width: 325px;
   text-align: center;
   margin: auto;
   margin-bottom: 50px;
@@ -183,7 +185,7 @@ ul {
   border: none;
   z-index: 0;
 }
-.cards img, .cards .imgPhoto img, .card2 img, .card2 .imgPhoto img {
+.cards img, .cards .lightbox .contentLB video, .lightbox .contentLB .cards video, .cards .imgPhoto img, .card2 img, .card2 .lightbox .contentLB video, .lightbox .contentLB .card2 video, .card2 .imgPhoto img {
   width: 250px;
   height: 250px;
   margin: 10px;
@@ -210,12 +212,7 @@ ul {
 
 .cards:hover {
   border-radius: 5px;
-  box-shadow: 2px 10px 20px #C4C4C4;
-  transform: scale(1.03);
-}
-
-.cards:hover img {
-  transform: scale(1.05);
+  box-shadow: 2px 2px 10px 2px #C4C4C4;
 }
 
 h2 {
@@ -266,9 +263,9 @@ h2 {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #DB8876;
-  width: 75%;
-  max-width: 590px;
-  height: auto;
+  width: 70%;
+  max-width: 550px;
+  max-height: 600px;
   margin: auto;
   border-radius: 3px;
   animation: formOpen 0.3s;
@@ -276,16 +273,16 @@ h2 {
 .bground .content {
   position: relative;
   display: flex;
-  margin: 25px;
+  margin: 20px;
   margin-left: 30px;
-  padding-top: 25px;
+  padding-top: 5px;
 }
 .bground .content .cross {
   position: absolute;
-  right: -25px;
-  top: 20px;
+  right: -10px;
+  top: 0;
   width: 50px;
-  height: 50px;
+  height: 40px;
   cursor: pointer;
   transform: scale(0.7);
 }
@@ -305,7 +302,7 @@ h2 {
   transform: rotate(-45deg);
 }
 .bground .content .contactMe {
-  font-size: 3em;
+  font-size: 2.8em;
 }
 .bground .content .titleName {
   font-size: 3em;
@@ -321,27 +318,27 @@ h2 {
 }
 .bground .modalBody .form-data label {
   margin-bottom: 5px;
-  font-size: 1.4em;
+  font-size: 1.2em;
 }
 .bground .modalBody .form-data input, .bground .modalBody .form-data textarea {
   margin-bottom: 10px;
   border: none;
   border-radius: 3px;
-  height: 40px;
+  height: 30px;
   font-size: 1.2em;
   outline: none;
 }
 .bground .modalBody .form-data textarea {
-  height: 170px;
+  height: 130px;
   overflow-wrap: break-word;
   font-size: 19px;
 }
 .bground .send {
   border: none;
-  margin: 25px 35px;
+  margin: 15px 35px;
   border-radius: 5px;
   width: 170px;
-  height: 69px;
+  height: 45px;
   background-color: #901C1C;
   color: #fff;
   font-size: 1em;
@@ -351,6 +348,9 @@ h2 {
 main {
   opacity: 1;
   margin-top: 75px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .photoFrame {
@@ -361,7 +361,7 @@ main {
   padding: 35px;
   background-color: #FAFAFA;
 }
-.photoFrame .photographerFace img {
+.photoFrame .photographerFace img, .photoFrame .photographerFace .lightbox .contentLB video, .lightbox .contentLB .photoFrame .photographerFace video {
   width: 200px;
   height: 200px;
   border-radius: 200px;
@@ -370,28 +370,32 @@ main {
   transition: 0.3s;
 }
 .photoFrame .zoneTxt {
-  width: 50%;
+  width: 70%;
   margin: auto 10px;
 }
 .photoFrame .zoneTxt .divTitle {
   display: flex;
-  justify-content: start;
-  min-height: 80px;
+  justify-content: flex-start;
+  min-height: 40px;
+  flex-wrap: nowrap;
 }
 .photoFrame .zoneTxt .divTitle h2 {
-  width: 80%;
-  font-size: 3.5em;
+  width: 63%;
+  font-size: 4.3vw;
+  white-space: nowrap;
+  margin: 0;
 }
 .photoFrame .zoneTxt .divTitle .contact {
   border: none;
   width: 150px;
-  margin: auto 0px;
+  margin: auto 0;
   height: 60px;
   border-radius: 5px;
   background-color: #911616;
   color: #fff;
   cursor: pointer;
   font-size: 1.2em;
+  z-index: 2;
 }
 .photoFrame .zoneTxt .descript {
   line-height: 2.5em;
@@ -400,79 +404,63 @@ main {
 .photoFrame .zoneTxt .descript .local {
   font-size: 1.4em;
 }
-.photoFrame .zoneTxt .blockFlex .tagDesign {
-  justify-content: start;
+.photoFrame .zoneTxt .tagDesign2 {
+  display: flex;
 }
-
-.contact2 {
-  display: none;
-  position: fixed;
-  bottom: 10%;
-  right: 50%;
-  transform: translate(50%, -50%);
-  border: none;
-  width: 40%;
-  margin: auto 0px;
-  height: 40px;
-  border-radius: 3px;
-  background-color: #911616;
-  color: #fff;
-  cursor: pointer;
-  font-size: 1.2em;
+.photoFrame .zoneTxt .tagDesign2__tag2 {
+  width: 100px;
 }
 
 .filter {
-  position: relative;
-  width: 90%;
-  margin: auto;
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin: 0 5%;
 }
-.filter .sortBy, .filter .select {
-  font-size: 1.2em;
-  margin-right: 40px;
+.filter .txtSort {
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 20px;
 }
-.filter .select {
-  position: relative;
-  width: 150px;
-  height: 50px;
-  background-color: #911616;
+.filter .selectContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #911616;
   border-radius: 5px;
-  box-shadow: 2px 2px 12px #757575;
+  padding-right: 15px;
 }
-.filter .select .choice {
-  width: 25px;
-  padding: 17px 15px;
+.filter .selectContainer select {
   cursor: pointer;
-  transition: 0.3s;
-}
-.filter .select .choice a {
+  background: #911616;
+  height: 45px;
   color: #fff;
+  border-radius: 5px;
+  font-size: 20px;
+  border: none;
+  appearance: none;
+  padding: 0 40px 0 15px;
+  outline: 0;
 }
-.filter .select hr {
-  display: none;
-  width: 80%;
-  margin: auto;
+.filter .selectContainer select option {
+  border: none;
+  border-bottom: 1px solid white;
 }
-.filter .select .choice:hover {
-  transform: translate(7px);
-  transition: 0.3s;
-}
-.filter .arrowDown img, .filter .arrowUp img {
-  position: absolute;
-  top: 35%;
-  right: 12%;
-  width: 10px;
-  z-index: 10;
+.filter .selectContainer .arrow {
   cursor: pointer;
-  transform: rotate(90deg);
-  transition: 0.3s;
+  width: 10px;
+  margin-left: -25px;
+  transition: 0.1s;
+  pointer-events: none;
 }
-.filter .arrowUp {
-  display: none;
-  position: absolute;
-  top: 21%;
-  right: 19%;
-  transform: rotate(180deg);
+.filter .selectContainer .arrow.arrowDown {
+  transform: rotate(90deg);
+}
+.filter .selectContainer .arrow.arrowUp {
+  transform: rotate(270deg);
 }
 
 .album {
@@ -486,9 +474,22 @@ main {
 .album .albumPhoto {
   padding: 35px;
 }
-.album .albumPhoto .divPhoto img {
-  width: 400px;
-  height: 400px;
+.album .albumPhoto .divPhoto img, .album .albumPhoto .divPhoto .lightbox .contentLB video, .lightbox .contentLB .album .albumPhoto .divPhoto video {
+  width: 390px;
+  height: 390px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 12px;
+  box-shadow: 3px 2px 10px 3px #C4C4C4;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.album .albumPhoto .divPhoto img:hover, .album .albumPhoto .divPhoto .lightbox .contentLB video:hover, .lightbox .contentLB .album .albumPhoto .divPhoto video:hover {
+  box-shadow: 2px 3px 15px 3px #757575;
+}
+.album .albumPhoto video {
+  width: 390px;
+  height: 390px;
   object-fit: cover;
   border-radius: 5px;
   margin-bottom: 12px;
@@ -496,8 +497,8 @@ main {
   cursor: pointer;
   transition: 0.3s;
 }
-.album .albumPhoto .divPhoto img:hover {
-  transform: scale(1.03);
+.album .albumPhoto video:hover {
+  box-shadow: 2px 3px 15px 3px #757575;
 }
 .album .subtitle {
   display: flex;
@@ -513,13 +514,26 @@ main {
   margin-right: 5px;
 }
 .album .subtitle .blockLike .heart {
-  width: 20px;
+  background: url(../FishEye_Photos/heart-black.svg) center center no-repeat;
+  border: none;
+  background-color: transparent;
+  width: 37px;
   height: 20px;
-  margin: auto;
+  cursor: pointer;
+  transition: 0.3s;
+  padding-bottom: 15px;
+  color: transparent;
 }
-.album .subtitle .blockLike .heart img {
+.album .subtitle .blockLike .heart img, .album .subtitle .blockLike .heart .lightbox .contentLB video, .lightbox .contentLB .album .subtitle .blockLike .heart video {
+  padding-bottom: 15px;
   width: 100%;
   height: 100%;
+}
+.album .subtitle .blockLike .clicked {
+  background: url(../FishEye_Photos/heart-red.svg) center center no-repeat;
+}
+.album .subtitle .blockLike .heart:hover {
+  transform: scale(1.2);
 }
 .album .infoBox {
   display: flex;
@@ -535,6 +549,7 @@ main {
   border-top-right-radius: 5px;
   font-size: 1.2em;
   z-index: 9;
+  box-shadow: 3px 2px 5px 2px #C4C4C4;
 }
 .album .infoBox .likeBox {
   line-height: 50px;
@@ -549,6 +564,14 @@ main {
 }
 
 @keyframes formOpen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes lightboxIn {
   from {
     opacity: 0;
   }
@@ -574,22 +597,31 @@ main {
   height: 100%;
   background-color: #fff;
   z-index: 10;
+  overflow: auto;
+  animation: lightboxIn 0.5s;
+  transition: opacity 0.3s;
+}
+.lightbox__loader {
+  opacity: 0.7;
+}
+.lightbox .fadeOut {
+  opacity: 0;
 }
 .lightbox__closeLB {
   border: none;
-  background: url(../../FishEye_Photos/close.svg) center center/30px 30px no-repeat;
+  background: url(../FishEye_Photos/close.svg) center center/30px 30px no-repeat;
   width: 45px;
   height: 45px;
   z-index: 12;
   position: fixed;
   top: 0;
-  right: 0;
+  right: -15px;
   margin: 25px;
   text-indent: 3000px;
 }
 .lightbox__nextLB, .lightbox__prevLB {
   border: none;
-  background: url(../../FishEye_Photos/arrow.svg) center center/30px 48px no-repeat;
+  background: url(../FishEye_Photos/arrow.svg) center center/30px 48px no-repeat;
   width: 70px;
   height: 100%;
   position: fixed;
@@ -608,13 +640,154 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 50px;
-  margin-right: 50px;
+  margin: auto 50px;
   min-height: 100vh;
 }
+.lightbox .contentLB img, .lightbox .contentLB video {
+  max-width: 95%;
+  max-height: 100vh;
+  margin: auto;
+  height: auto;
+  animation: lightboxIn 0.5s;
+}
+@media screen and (max-width: 850px) {
+  header {
+    grid-template-columns: auto 0 auto;
+    padding: 25px 0px 25px 5px;
+  }
+  header .topNav {
+    grid-row-start: 2;
+    grid-column: 1/4;
+    width: 90%;
+    margin: auto;
+  }
+  header .topNav .tagDesign {
+    width: auto;
+    height: auto;
+    font-size: 2.5vw;
+  }
+  header h1 {
+    grid-row: 1;
+    text-align: end;
+  }
+  header .mainHeader {
+    text-align: end;
+    grid-column: 4;
+    font-size: 2.3vw;
+    padding-right: 10px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .divTitle {
+    width: 100%;
+    padding: 0;
+  }
+  .divTitle h2 {
+    margin: 0;
+  }
+  .divTitle .contact {
+    position: fixed;
+    bottom: 5%;
+    right: 50%;
+    transform: translate(50%, -50%);
+  }
 
-.mainFlux {
-  display: none;
+  .album {
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 775px) {
+  .filter {
+    display: none;
+  }
+
+  .album {
+    text-align: center;
+  }
+  .album .infoBox {
+    display: none;
+  }
+}
+@media screen and (max-width: 850px) {
+  header {
+    margin: 25px auto;
+    padding: 0;
+  }
+  header .logo {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  header .topNav {
+    grid-column: 1/4;
+    grid-row: 2;
+    margin-top: 25px;
+    margin-bottom: 50px;
+  }
+
+  main {
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 610px) {
+  .photoFrame {
+    background-color: #fff;
+    padding: 0;
+    margin: 25px auto;
+  }
+  .photoFrame .photographerFace img, .photoFrame .photographerFace .lightbox .contentLB video, .lightbox .contentLB .photoFrame .photographerFace video {
+    width: 30vw;
+    height: 30vw;
+    border-radius: 30vw;
+    margin-bottom: 50px;
+  }
+  .photoFrame .zoneTxt {
+    width: 50%;
+  }
+  .photoFrame .zoneTxt .divTitle h2 {
+    margin: 0;
+    font-size: 6vw;
+  }
+  .photoFrame .zoneTxt .descript {
+    font-size: 3vw;
+  }
+
+  .album .albumPhoto {
+    padding: 0;
+  }
+  .album .albumPhoto .divPhoto img, .album .albumPhoto .divPhoto .lightbox .contentLB video, .lightbox .contentLB .album .albumPhoto .divPhoto video {
+    width: 320px;
+    height: 320px;
+    margin: auto;
+  }
+  .album .albumPhoto video {
+    width: 320px;
+    height: 320px;
+    margin: auto;
+  }
+  .album .subtitle .blockLike .heart .heart img, .album .subtitle .blockLike .heart .heart .lightbox .contentLB video, .lightbox .contentLB .album .subtitle .blockLike .heart .heart video {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 400px) {
+  header {
+    margin: 25px 0;
+  }
+}
+@media screen and (max-width: 550px) {
+  .bground .content {
+    margin: 15px;
+  }
+  .bground .content .cross {
+    right: 0;
+    width: 25px;
+    height: 25px;
+  }
+  .bground .content .contactMe {
+    font-size: 1.7em;
+  }
+  .bground .content .titleName {
+    font-size: 1.7em;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
