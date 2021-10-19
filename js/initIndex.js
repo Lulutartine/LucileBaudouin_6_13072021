@@ -22,11 +22,10 @@ const createHeader = (data) => {
 	// MOUSEOVER
 	const main = document.querySelector('main');
 	main.addEventListener('mouseover', function() {
-		hidden.hidden = false;
+	hidden.hidden = false;
 	});
 
 	// SCROLL
-	const hidden = document.querySelector('div');
 	hidden.addEventListener('scroll', () => {
 		if (window.scrollY >= hidden.scrollHeight) {
 			hidden.style.display = 'block';
