@@ -133,6 +133,8 @@ export class Form {
                state.txtFree.data = inpTxtFree.value;
 
                console.log('error');
+               const dataError = document.createElement('dataError');
+               dataError.innerHTML = 'Votre formulaire contient des erreurs veuillez verifier';
             }
          });
       }
@@ -142,6 +144,7 @@ export class Form {
       this.openForm();
       this.closeForm();
    };
+
    openForm() {
       //FORM_context___
       const contact = document.querySelector('.contact');

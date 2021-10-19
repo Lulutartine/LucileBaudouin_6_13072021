@@ -1,5 +1,8 @@
 import { paramUrl, getMedias, getPhotographer } from "./tools.js";
 import { DomPage } from "./DomPage.js";
+import { DropBox } from "./DropBox.js";
+import { Gallery } from "./Gallery.js";
+import { Lightbox } from "./Lightbox.js";
 import { Form } from "./Form.js";
 //================================================//
 // Récupération des data dans le local Storage
@@ -18,6 +21,16 @@ domPage.createHeaderPage();
 domPage.photographerFrame(data);
 domPage.createTagsOnPage(photographer);
 domPage.createAlbum(photographer);
+// DropBox
+const drop = new DropBox(medias, photographer);
+drop.createDropBox();
+// Gallery
+const gallery = new Gallery(medias, photographer);
+gallery.displayMedias();
+gallery.getTotalLike();
+gallery.heartListener();
+// Lightbox
+Lightbox.init();
 // Formular
 const form = new Form(photographer);
 form.createForm();

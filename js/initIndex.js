@@ -11,19 +11,30 @@ export const initIndex = (data) => {
 // CREATE HEADER
 const createHeader = (data) => {
 	const header = document.querySelector('header');
-
 	const hidden = document.createElement('div');
 	hidden.classList.add('hidden');
 	hidden.hidden = true;
+
 	const hiddenLink = document.createElement('a');
 	hiddenLink.href = '#main';
 	hiddenLink.innerHTML = 'Passer au contenu';
+
 	// MOUSEOVER
 	const main = document.querySelector('main');
 	main.addEventListener('mouseover', function() {
 		hidden.hidden = false;
 	});
 
+	// SCROLL
+	const hidden = document.querySelector('div');
+	hidden.addEventListener('scroll', () => {
+		if (window.scrollY >= hidden.scrollHeight) {
+			hidden.style.display = 'block';
+		} else {
+			hidden.style.display = 'none';
+		}
+	}
+	)
 
 	const logoLink = document.createElement('a');
 	const logo = document.createElement('img');
