@@ -41,7 +41,7 @@ const createHeader = (data) => {
 	const logo = document.createElement('img');
 	logoLink.href = './index.html';
 	logoLink.classList.add('logo');
-	logo.src = 'FishEye_Photos/logo.png';
+	logo.src = './FishEye_Photos/logo.png';
 	logo.alt = 'FishEye Home Page';
 
 	const h1 = document.createElement('h1');
