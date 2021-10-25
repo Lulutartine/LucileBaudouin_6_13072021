@@ -25,7 +25,7 @@ export class DropBox extends Gallery {
 		const select = document.createElement('select');
 		const arrow = document.createElement('img');
 		arrow.classList.add('arrow', 'arrowDown');
-		arrow.src = 'FishEye_Photos/arrow-white.svg';
+		arrow.src = 'FishEye_Photos/arrow-white_down.svg';
 		arrow.alt = 'bouton select';
 
 		options.forEach(option => {

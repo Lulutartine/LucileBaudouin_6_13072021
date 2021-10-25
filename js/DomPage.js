@@ -15,9 +15,9 @@ export class DomPage {
       logoLink.href = './index.html';
    
       const logo = document.createElement('img');
-      logo.alt = 'FishEye page d\'accueil';
-      logo.title = 'FishEye page d\'accueil';
-      logo.src = 'FishEye_Photos/logo.png';
+      logo.alt = "FishEye page d'accueil";
+      logo.title = "FishEye page d'accueil";
+      logo.src = "FishEye_Photos logo.png";
    
       logoLink.append(logo);
       header.append(logoLink);
