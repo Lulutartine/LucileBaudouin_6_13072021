@@ -95,18 +95,22 @@ export class Form {
       divContact.append(up);
       divContact.append(photographerName);
       //STATE______________//
-      var state = {
+      let setting = {
          firstName: {
-            data: ''
+            data: '',
+            status: false
          },
          lastName: {
-            data: ''
+            data: '',
+            status: false
          },
          email: {
-            data: ''
+            data: '',
+            status: false
          },
          txtFree: {
-            data: ''
+            data: '',
+            status: false
          }
       };
 
@@ -116,27 +120,71 @@ export class Form {
             //STOP FOR CHECK
             event.preventDefault();
 
-            if(inpEmail.value.match(/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i)) {
-               state.firstName.data = inpFirstname.value;
-               state.lastName.data = inpLastname.value;
-               state.email.data = inpEmail.value;
-               state.txtFree.data = inpTxtFree.value;
-
-               this.closeForm();
-               const form = document.querySelector('#send');
-               form.reset();
-               console.log(state);
-            } else {
-               state.firstName.data = inpFirstname.value;
-               state.lastName.data = inpLastname.value;
-               state.email.data = inpEmail.value;
-               state.txtFree.data = inpTxtFree.value;
-
-               console.log('error');
-               const dataError = document.createElement('dataError');
-               dataError.innerHTML = 'Votre formulaire contient des erreurs veuillez verifier';
+            // Check first name
+            const checkInputFirstName = () => {
+               let errorFirstName = document.querySelector('.error');
+               if (firstName.value.length > 1) {
+                  setting.firstName.data = firstName.value;
+                  setting.firstName.status = true;
+                  firstName.parentNode.setAttribute("data-error-visible", "false");
+               } else {
+                  setting.firstName.data = firstName.value;
+                  setting.firstName.status = false;
+                  firstName.parentNode.setAttribute("data-error-visible", "true");
+                  errorFirstName.setCustomValidity("Veuillez entrer prenom de 2 caracteres ou plus");
+               }
             }
-         });
+            firstName.addEventListener('input', checkInputFirstName);
+            
+            // Check last name
+            const checkInputLastName = () => {
+               let errorLastName = document.querySelector('.error');
+               if (lastName.value.length > 1) {
+                  setting.lastName.data = lastName.value;
+                  setting.lastName.status = true;
+                  lastName.parentNode.setAttribute("data-error-visible", "false");
+               } else {
+                  setting.lastName.data = lastName.value;
+                  setting.lastName.status = false;
+                  lastName.parentNode.setAttribute("data-error-visible", "true");
+                  errorLastName.setCustomValidity("Veuillez entrer nom de 2 caracteres ou plus");
+               }
+            }
+            lastName.addEventListener('input', checkInputLastName);
+            
+            // Check email
+            const checkInputEmail = () => {
+               let errorEmail = document.querySelector('.error');
+               if (email.value.match(/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i)) {
+                  setting.email.data = email.value;
+                  setting.email.status = true;
+                  email.parentNode.setAttribute("data-error-visible", "false");
+               } else {
+                  setting.email.data = email.value;
+                  setting.email.status = false;
+                  email.parentNode.setAttribute("data-error-visible", "true");
+                  errorEmail.setCustomValidity("Veuillez entrer une adresse e-mail valide");
+               }
+            }
+            email.addEventListener('input', checkInputEmail);
+
+            // Check message
+            const checkInputMessage = () => {
+               let errorMessage = document.querySelector('.error');
+               if (message.value.length > 1) {
+                  setting.message.data = lastName.value;
+                  setting.message.status = true;
+                  message.parentNode.setAttribute("data-error-visible", "false");
+               } else {
+                  setting.message.data = lastName.value;
+                  setting.message.status = false;
+                  message.parentNode.setAttribute("data-error-visible", "true");
+                  errorMessage.setCustomValidity("Veuillez entrer un message plus long");
+                  }
+            }
+            lastName.addEventListener('input', checkInputMessage);
+            }
+         ,);
       }
       checkForm();
    };
@@ -162,8 +210,7 @@ export class Form {
       const cross = document.querySelector('.cross');
       cross.addEventListener('click', this.closeForm);
       const bground = document.querySelector('.bground');
-      const main = document.querySelector('main')
+      const main = document.querySelector('main');
       bground.style.display = 'none';
       main.style.opacity = 1;
-   };
-}
+   };}

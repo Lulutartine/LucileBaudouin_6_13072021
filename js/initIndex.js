@@ -11,10 +11,12 @@ export const initIndex = (data) => {
 // CREATE HEADER
 const createHeader = (data) => {
 	const header = document.querySelector('header');
+	const passerContenu = document.createElement('div');
+	passerContenu.classList.add('passerContenu');
+	passerContenu.hidden = true;
 	const hidden = document.createElement('div');
 	hidden.classList.add('hidden');
 	hidden.hidden = true;
-
 	const hiddenLink = document.createElement('a');
 	hiddenLink.href = '#main';
 	hiddenLink.innerHTML = 'Passer au contenu';
@@ -26,11 +28,11 @@ const createHeader = (data) => {
 	});
 
 	// SCROLL
-	hidden.addEventListener('scroll', () => {
-		if (window.scrollY >= hidden.scrollHeight) {
-			hidden.style.display = 'block';
+	passerContenu.addEventListener('scroll', () => {
+		if (window.scrollY >= passerContenu.scrollHeight) {
+			passerContenu.style.display = 'block';
 		} else {
-			hidden.style.display = 'none';
+			passerContenu.style.display = 'none';
 		}
 	}
 	)

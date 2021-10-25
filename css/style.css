@@ -472,7 +472,7 @@ main {
   margin-bottom: 25px;
 }
 .album .albumPhoto {
-  padding: 35px;
+  padding: 20px;
 }
 .album .albumPhoto .divPhoto img, .album .albumPhoto .divPhoto .lightbox .contentLB video, .lightbox .contentLB .album .albumPhoto .divPhoto video {
   width: 390px;
