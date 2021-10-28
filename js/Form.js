@@ -24,7 +24,7 @@ export class Form {
       photographerName.classList.add('titleName');
       photographerName.innerHTML = this.photographer.name;
       modalbg.classList.add('modalBody');
-      //FORMULARE
+      //FORM
       const form = document.createElement('form');
       form.id = 'send';
       form.method = 'POST';
@@ -185,16 +185,35 @@ export class Form {
             lastName.addEventListener('input', checkInputMessage);
             }
          ,);
+
+         // global check
+         const globalCheck = () => {
+            let valid = false;
+            for (let object in setting) {
+                  if (status == false) {
+                     valid = false;
+                     break;
+                  } else {
+                     valid = true;
+                  }
+               }
+            }
+         
+            if (valid == true) {
+               closeModal();
+            }
+            return valid;
+         }
       }
       checkForm();
    };
-   handleStatus() {
+   handleStatus(); {
       this.openForm();
       this.closeForm();
    };
 
-   openForm() {
-      //FORM_context___
+//FORM_context
+   openForm(); {
       const contact = document.querySelector('.contact');
       contact.addEventListener('click', this.openForm);
 
@@ -206,11 +225,11 @@ export class Form {
       const input = document.querySelector('#first');
       input.focus();
    };
-   closeForm() {
+   closeForm(); {
       const cross = document.querySelector('.cross');
       cross.addEventListener('click', this.closeForm);
       const bground = document.querySelector('.bground');
       const main = document.querySelector('main');
       bground.style.display = 'none';
       main.style.opacity = 1;
-   };}
+   };

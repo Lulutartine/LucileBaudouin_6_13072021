@@ -88,6 +88,7 @@ const createHeader = (data) => {
 
 	hidden.append(hiddenLink);
 };
+
 // PHOTOGRAPHERS CARDS
 const createCard = (photographerData) => {
 	const card = document.createElement('a');
