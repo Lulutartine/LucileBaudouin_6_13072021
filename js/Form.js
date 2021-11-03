@@ -205,7 +205,8 @@ export class Form {
             return valid;
          }
       }
-      checkForm();
+      
+      checkForm(); {
    };
    handleStatus(); {
       this.openForm();

@@ -19,7 +19,7 @@ const createHeader = (data) => {
 	});
 
 	// SCROLL
-	const passerContenu = querySelector('a');
+	const passerContenu = document.querySelector('a');
 	passerContenu.addEventListener('scroll', () => {
 		if (window.scrollY >= passerContenu.scrollHeight) {
 			passerContenu.style.display = 'block';
