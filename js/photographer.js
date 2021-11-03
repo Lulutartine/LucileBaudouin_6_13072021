@@ -36,15 +36,29 @@ const form = new Form(photographer);
 form.createForm();
 form.handleStatus();
 // Tags
+const ul = document.createElement('ul');
+ul.classList.add('tagDesign');
+
+for (let i = 0; i < photographerData.tags.length; i++) {
+    const li = document.createElement('li');
+    const tag = document.createElement('span');
+
+    tag.classList.add('tagDesign__tag');
+    tag.innerHTML = '#' + photographerData.tags[i];
+
+    li.append(tag);
+    ul.append(li);
+}
+
 const onClickTagsListHeader = (data) => {
-	//Quand je click sur un tag, si la card avec l'id: (photoId) ne contient pas le tag, alors tu passes cette card en Display = 'none';
+	//Quand je clic sur un tag, si la card avec l'id: (photoId) ne contient pas le tag, alors tu passes cette card en Display = 'none';
 	const tags = document.querySelectorAll('.tagDesign__tag'); // tags sur lesquels clicker
 	const getCards = document.querySelectorAll('.cards'); // cards des photographes
 	
 	tags.forEach(tag => { // pour chaque tag
 		tag.addEventListener('click', () => { // Quand je click sur un tag...
 
-			//Reset les cards si on click a nouveaux sur le tag selectionné
+			//Reset les cards si on click a nouveau sur le tag selectionné
 			if (tag.classList.contains('selectedTag')) {
 				tag.classList.remove('selectedTag');
 
@@ -94,7 +108,6 @@ const onClickTagsListHeader = (data) => {
 				for (let i = 0; i < cardToDisplay.length; i++) {
 					document.getElementById(cardToDisplay[i].id).style.display = 'block';
 				}
-	
 			}
 		});
 	});

@@ -11,15 +11,6 @@ export const initIndex = (data) => {
 // CREATE HEADER
 const createHeader = (data) => {
 	const header = document.querySelector('header');
-	const passerContenu = document.createElement('div');
-	passerContenu.classList.add('passerContenu');
-	passerContenu.hidden = true;
-	const hidden = document.createElement('div');
-	hidden.classList.add('hidden');
-	hidden.hidden = true;
-	const hiddenLink = document.createElement('a');
-	hiddenLink.href = '#main';
-	hiddenLink.innerHTML = 'Passer au contenu';
 
 	// MOUSEOVER
 	const main = document.querySelector('main');
@@ -28,6 +19,7 @@ const createHeader = (data) => {
 	});
 
 	// SCROLL
+	const passerContenu = querySelector('a');
 	passerContenu.addEventListener('scroll', () => {
 		if (window.scrollY >= passerContenu.scrollHeight) {
 			passerContenu.style.display = 'block';
@@ -77,7 +69,7 @@ const createHeader = (data) => {
 		ul.append(li);
 	}
 	
-	header.append(hidden);
+	header.append(passerContenu);
 
 	logoLink.append(logo);
 	nav.append(ul);
@@ -85,8 +77,6 @@ const createHeader = (data) => {
 	header.append(logoLink);
 	header.append(nav);
 	header.append(h1);
-
-	hidden.append(hiddenLink);
 };
 
 // PHOTOGRAPHERS CARDS
