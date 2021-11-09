@@ -94,7 +94,8 @@ export class Form {
       divContact.append(contactMe);
       divContact.append(up);
       divContact.append(photographerName);
-      //STATE______________//
+
+      //STATUS______________//
       let setting = {
          firstName: {
             data: '',
@@ -205,15 +206,13 @@ export class Form {
             return valid;
          }
       }
-      
-      checkForm(); {
+      checkForm();
    };
    handleStatus(); {
       this.openForm();
       this.closeForm();
    };
-
-//FORM_context
+   //FORM_context
    openForm(); {
       const contact = document.querySelector('.contact');
       contact.addEventListener('click', this.openForm);

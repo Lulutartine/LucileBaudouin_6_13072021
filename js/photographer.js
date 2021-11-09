@@ -21,24 +21,31 @@ domPage.createHeaderPage();
 domPage.photographerFrame(data);
 domPage.createTagsOnPage(photographer);
 domPage.createAlbum(photographer);
+
 // DropBox
 const drop = new DropBox(medias, photographer);
 drop.createDropBox();
+
 // Gallery
 const gallery = new Gallery(medias, photographer);
 gallery.displayMedias();
 gallery.getTotalLike();
 gallery.heartListener();
+
 // Lightbox
 Lightbox.init();
+
 // Contact Form
 const form = new Form(photographer);
 form.createForm();
 form.handleStatus();
 // Tags
+	//boucle pour chaque photographes
+	data.photographers.forEach(photographer => {
+	});
+	onClickTagsListHeader(data);
 const ul = document.createElement('ul');
 ul.classList.add('tagDesign');
-
 for (let i = 0; i < photographerData.tags.length; i++) {
     const li = document.createElement('li');
     const tag = document.createElement('span');
@@ -49,7 +56,6 @@ for (let i = 0; i < photographerData.tags.length; i++) {
     li.append(tag);
     ul.append(li);
 }
-
 const onClickTagsListHeader = (data) => {
 	//Quand je clic sur un tag, si la card avec l'id: (photoId) ne contient pas le tag, alors tu passes cette card en Display = 'none';
 	const tags = document.querySelectorAll('.tagDesign__tag'); // tags sur lesquels clicker
@@ -74,7 +80,6 @@ const onClickTagsListHeader = (data) => {
 				const selectedTag = document.querySelector('.selectedTag');
 				if (selectedTag !== null) {
 					selectedTag.classList.remove('selectedTag');
-
 				}
 
 				for (let i = 0; i < photographersList.length; i++) { // parcourir chacune des cards pour verifier les tags
