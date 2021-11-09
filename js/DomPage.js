@@ -45,14 +45,18 @@ export class DomPage {
    
       const para = document.createElement('p');
       para.classList.add('descript');
+      descript.setAttribute('aria-label', description);
    
       const place = document.createElement('span');
       place.classList.add('local');
       place.innerHTML = this.photographer.city + ', ' + this.photographer.country;
+      place.setAttribute('lang', 'en');
+      place.setAttribute('aria-label', `${city}, ${country}`);
    
       const depiction = document.createElement('span');
       depiction.classList.add('depiction');
       depiction.innerHTML = this.photographer.tagline;
+      depiction.setAttribute('aria-label', tagline);
    
       const divTitle = document.createElement('div');
       divTitle.classList.add('divTitle');
@@ -61,6 +65,7 @@ export class DomPage {
       contact.classList.add('contact');
       contact.innerHTML = 'Contactez-moi';
       contact.title = 'Contactez-moi !';
+      contact.setAttribute('aria-label', Contact);
    
       const photographerFace = document.createElement('div');
       photographerFace.classList.add('photographerFace');
@@ -95,6 +100,8 @@ export class DomPage {
    
          tag.classList.add('tagDesign__tag2');
          tag.innerHTML = '#' + photographer.tags[i];
+         tag.setAttribute('lang', 'en');
+         tag.setAttribute('aria-label', 'Photographer categories');
    
          li.append(tag);
          ul.append(li);

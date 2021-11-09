@@ -18,6 +18,7 @@ export class DropBox extends Gallery {
 		const txtSort = document.createElement('span');
 		txtSort.classList.add('txtSort');
 		txtSort.innerHTML = 'Trier par';
+		txtSort.setAttribute('aria-label', 'Trier par')
 
 		const options = ['Popularité', 'Date', 'Titre'];
 		const selectContainer = document.createElement('div');

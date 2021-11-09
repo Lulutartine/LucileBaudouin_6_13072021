@@ -18,6 +18,7 @@ export class Form {
       const up = document.createElement('br');
       contactMe.classList.add('contactMe');
       contactMe.innerHTML = 'Contactez-moi';
+      contactMe.setAttribute('aria-label','contactez moi');
       //This.photographer.name
       const photographerName = document.createElement('h3');
       const modalbg = document.createElement('div');
@@ -43,13 +44,17 @@ export class Form {
       const labEmail = document.createElement('label');
       const labTxtFree = document.createElement('label');
       labFirstname.innerHTML = 'Prénom';
-      labFirstname.setAttribute('for', 'first');
+      labFirstname.setAttribute('for', 'first name');
+      labFirstname.setAttribute('aria-label', 'First name');
       labLastname.innerHTML = 'Nom';
-      labLastname.setAttribute('for', 'last');
+      labLastname.setAttribute('for', 'last name');
+      labLastname.setAttribute('aria-label', 'Last name');
       labEmail.innerHTML = 'Email';
       labEmail.setAttribute('for', 'email');
+      labEmail.setAttribute('aria-label', 'Email');
       labTxtFree.innerHTML = 'Votre message';
       labTxtFree.setAttribute('for', 'txtFree');
+      labTxtFree.setAttribute('aria-label', 'Your message');
       //===================================================
       const inpFirstname = document.createElement('input');
       const inpLastname = document.createElement('input');
@@ -57,17 +62,22 @@ export class Form {
       const inpTxtFree = document.createElement('textarea');
       inpFirstname.id = 'first';
       inpFirstname.type = 'textarea';
+      inpFirstname.setAttribute('aria-labelledby', 'label_prenom');
       inpLastname.id = 'last';
       inpLastname.type = 'textarea';
+      inpLastname.setAttribute('aria-labelledby', 'label_nom');
       inpEmail.type = 'email';
       inpEmail.id = 'email';
+      inpEmail.setAttribute('aria-labelledby', 'label_email');
       inpEmail.required = true;
       inpTxtFree.id = 'txtFree';
+      inpTxtFree.setAttribute('aria-labelledby', 'label_message');
       //===================================================
       const sendBtn = document.createElement('button');
       sendBtn.type = 'submit';
       sendBtn.classList.add('send');
       sendBtn.innerHTML = 'Envoyer';
+      sendBtn.setAttribute('aria-label', envoyer);
       
       form.append(firstname);
       form.append(lastname);

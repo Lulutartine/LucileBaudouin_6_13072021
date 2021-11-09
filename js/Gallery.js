@@ -16,17 +16,21 @@ export class Gallery {
          const divPhoto = document.createElement('div');
          divPhoto.classList.add('divPhoto');
          divPhoto.src = './FishEye_Photos/' + this.photographer.name + '/' + media.image;
+         divPhoto.setAttribute('aria-label', photographie);
          const picSubtitle = document.createElement('figcaption');
          picSubtitle.classList.add('subtitle');
+         picSubtitle.setAttribute('aria-label','sous titre');
          const nameImg = document.createElement('span');
          nameImg.classList.add('nameImg');
          nameImg.innerHTML = media.title;
+         nameImg.setAttribute('aria-label','nom image');
          const blockLike = document.createElement('div');
          blockLike.classList.add('blockLike');
 
          const like = document.createElement('div');
          like.classList.add('like');
          like.innerHTML = media.likes;
+         like.setAttribute('aria-label', 'likes du media');
          const heart = document.createElement('button');
          heart.classList.add('heart');
          heart.innerHTML = 'Clickez pour liker';
@@ -34,6 +38,7 @@ export class Gallery {
 
          const heartImg = document.createElement('img');
          heartImg.classList.add('heartImg');
+         heartImg.setAttribute('alt', 'like');
          // Play media if it's a video or an image
          if (media.video) {
             const linkVid = document.createElement('a');
@@ -87,6 +92,7 @@ export class Gallery {
    displayTotalLike() {
       const likeCounter = document.querySelector('.infoBox__likeCounter');
       likeCounter.innerHTML = this.getTotalLike();
+      likeCounter.setAttribute('aria-label', 'nombre total de likes');
    }
    heartListener() {
       this.displayTotalLike();
