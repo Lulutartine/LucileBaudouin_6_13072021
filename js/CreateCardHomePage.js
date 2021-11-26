@@ -89,7 +89,7 @@ class CreateCardHomePage {
 }
 
 //JSON datas collect
-fetch("../data.json").then((res)=>{ 
+fetch("./data.json").then((res)=>{ 
     //check request status
     //if ok send answer as JSON object
     if (res.ok) {
