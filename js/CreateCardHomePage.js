@@ -39,9 +39,9 @@ class CreateCardHomePage {
 
     //Card inputs properties insertion
     attributionAttribute(){
-        this.photographHeader.setAttribute("href", "../page/photographer.html?id=" + this.dataPhotograph.id)
+        this.photographHeader.setAttribute("href", "./page/photographer.html?id=" + this.dataPhotograph.id)
         this.photographHeader.setAttribute("aria-label", this.dataPhotograph.name)
-        this.photographImage.setAttribute("src", "../img/PhotographIDPhoto/" + this.dataPhotograph.portrait)
+        this.photographImage.setAttribute("src", "./img/PhotographIDPhoto/" + this.dataPhotograph.portrait)
         this.photographImage.setAttribute("alt", this.dataPhotograph.alt)
         this.photographName.setAttribute("tabindex", 0)
         this.photographCity.setAttribute("tabindex", 0)
