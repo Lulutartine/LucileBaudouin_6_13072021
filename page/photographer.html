@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FishEye - photograph</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="icon" type="logo/svg" href="../img/fav_logo.png">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="header" role="banner">
+        <figure class="header-logo"><a href="../index.html"><img src="../img/logo.png" alt="Fisheye home page"></a></figure>
+    </header>
+    <main id="photographer" aria-hidden="false">
+        <header class= "photographerHeader">
+            <section class= "photographerHeader-text">
+                <h1 class= "photographerHeader-text_name" tabindex="0"></h1>
+                <p class= "photographerHeader-text_city" tabindex="0"></p>
+                <p class= "photographerHeader-text_slogan" tabindex="0"></p>
+                <ul class="photographerHeader-text_tags"></ul>
+            </section>
+            <button class="photographerHeader-btn btnContactMe" id="btnContactMe" aria-label="Contactez moi" >Contactez-moi</button>
+            <figure class="photographerHeader-img"></figure>
+        </header>
+        <div class="formulaire" id="formulaire" aria-hidden="true" role="dialog" aria-labelledby="formulaire-title" aria-describedby="formulaire-title">
+            <form action="">
+                <div class="formulaire-close" tabindex="0"><svg width="42"  role="button close modal" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z" fill="white"/>
+                    </svg>
+                </div>
+                <h1 class="formulaire-title" id="formulaire-title" tabindex="0" aria-label="formulaire contactez moi">Contactez-moi</h1>
+                <p class="formulaire-title" id="formulaire-namePhotographe" tabindex="0"></p>
+                <div class="formData" aria-label="form field first name">
+                    <label for="prenom" id="label-prenom">Prénom</label>
+                    <input type="text" name="prenom" id="prenom" class="text-control">
+                    <small class="message-error" aria-label="message erreur">Error</small>
+                </div>
+                <div class="formData" aria-label="form field last name">
+                    <label for="nom" id="label-nom">Nom</label>
+                    <input type="text" name="nom" id="nom" class="text-control">
+                    <small class="message-error" aria-label="message erreur">Error</small>
+                </div>
+                <div class="formData" aria-label="form field email">
+                    <label for="email" id="label-email">Email</label>
+                    <input type="email" name="email" id="email" class="text-control">
+                    <small class="message-error" aria-label="message erreur">Error</small>
+                </div>
+                <div class="formData" aria-label="form field message">
+                    <label for="message" id="label-message">Votre message</label>
+                    <textarea name="message" id="message" cols="30" rows="10" class="text-control"></textarea>
+                    <small class="message-error" aria-label="message erreur">Error</small>
+                </div>
+                <input type="submit" value="Envoyer">
+                <p class="formulaire-msgConfirm">Fécilitation ! votre message a bien été enregistré</p>
+            </form>
+        </div>
+        <label for="dropdownButton" id="Order by">Trier par</label>
+        <div class="dropdown" id="dropdown" role="dropdown" aria-labelledby="Order by" tabindex="0">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownButton" role="button dropdown" data-bs-toggle="dropdown" aria-expanded="false" tabindex="0">
+              Popularité
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownButton">
+              <li><a class="dropdown-item dropdown-item_popularity" aria-label="popularity" href="#" tabindex="0">Popularité</a></li>
+              <li><a class="dropdown-item dropdown-item_date" aria-label="date" href="#" tabindex="0">Date</a></li>
+              <li><a class="dropdown-item dropdown-item_title" aria-label="title" href="#" tabindex="0">Titre</a></li>
+            </ul>
+            <span class="dropdown-arrow" aria-label="dropdown arrow"><em class="fas fa-chevron-down"></em></span>
+        </div>
+
+        <div class="mediasList" id="mediasList" role="contain media List" aria-label="contain media List" ></div>
+
+        <div class="totalLikesAndPricePhotograph" aria-label="card media">
+            <p><span class="totalLikes"></span><em class="fas fa-heart"></em></p>
+            <p><span class="pricePhotograph"></span><em class="fas fa-euro-sign"></em> / jour</p>
+        </div>
+        <div class="lightboxModal" role="dialog" aria-labelledby="lightbox-title" id="lightboxModal" aria-describedby="image closeup view">
+            <div class="lightbox"  id="lightbox image closeup view" role="lightbox" aria-label="lightbox" tabindex="0">
+                <button class="lightbox-close" arial-label="close dialog" role="close lightbox" ><em class="fas fa-times fa-2x"></em></button>
+                <button class="lightbox-arrow_left" arial-label="Previous image" ><em class="fas fa-chevron-left fa-2x"></em></button>
+                <button class="lightbox-arrow_right" arial-label="Next image" ><em class="fas fa-chevron-right fa-2x"></em></button>
+                <figure class="lightbox-media_image"><img src="#" aria-label='image' alt="display image lightbox"></figure>
+                <p class="lightbox-media_name" id="lightbox-title" tabindex="0"></p>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../js/Form.js"></script>
+    <script type="text/javascript" src="../js/Lightbox.js"></script>
+    <script type="text/javascript" src="../js/RedirectTags.js"></script>
+    <script type="text/javascript" src="../js/IncrementeLikes.js"></script>
+    <script type="text/javascript" src="../js/ImageMedia.js"></script>
+    <script type="text/javascript" src="../js/VideoMedia.js"></script>
+    <script type="text/javascript" src="../js/CreateCardHeader.js"></script>
+    <script type="text/javascript" src="../js/CreateMediaCard.js"></script>
+    <script type="text/javascript" src="../js/SortBy.js"></script>
+    <script type="text/javascript" src="../js/PhotographersPage.js"></script>
+</body>
+</html>

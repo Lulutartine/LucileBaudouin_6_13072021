@@ -1,15 +1,10 @@
-# 🚀 Welcome to your new awesome project!
+Travail est réalisé dans le cadre de la formation "Développeur front-end" d'OpenClassrooms.
 
-This project has been created using **webpack-cli**, you can now run
+Projet #6 consistant en l'intégration de maquettes pour la réalisation d'une plateforme de photographes 
+> respectant les WCAG, règles pour l'accessibilité du web
+> JavaScript utilisé pour le rendre fonctionnel
 
-```
-npm run build
-```
+# Lucile Baudouin
 
-or
+ 
 
-```
-yarn build
-```
-
-to bundle your application

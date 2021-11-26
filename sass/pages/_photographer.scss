@@ -1,0 +1,163 @@
+#photographer {
+    width: 85%;
+    margin: auto;
+    #dropdown {
+        width: 170px;
+        height: auto;
+        position: relative;
+        display: inline-block;
+        margin: 25px 0 25px 15px;
+    }
+
+    #dropdownButton {
+        width: 170px;
+        height: 69px;
+        background-color: $primaryColor;
+        padding-right: 45px;
+        font-size: 1.2em;
+    }
+
+    #dropdownButton:focus {
+        outline: none;
+        border: none;
+        box-shadow: none;
+        & ~ span i {
+            transform: rotate(180deg);
+        }
+    }
+
+    #dropdownButton:focus-visible {
+        outline: none;
+        border: none;
+        box-shadow: none;
+    }
+
+    #dropdown .dropdown-arrow {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 2.5em;
+        height: 100%;
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        z-index: 1000;
+        em {
+            color: white;
+            transform: rotate(0deg);
+            transition: transform .3s linear;
+        }
+    }
+    #dropdown .dropdown-menu.show {
+        background-color: $primaryColor;
+        width: 170px;
+        height: 170px;
+        transform: translate3d(0px, 0px, 0px)!important;
+        padding: 7px;
+        li {
+            height: 52px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid white;
+        }
+       
+        li:last-child {
+            border-bottom: none;
+        }
+        li a {
+            color: white;
+            font-size: 1.2em;
+        }
+        li a:hover {
+            background-color: transparent;
+        }
+    }
+    #dropdownButton::after {
+        display: none;
+    }
+
+    label[for="dropdownButton"]{
+        font-weight: 700;
+    }
+
+    #mediasList {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .totalLikesAndPricePhotograph {
+        width: 376px;
+        height: 89px;
+        background-color: #DB8876;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 1.5em;
+        font-weight: 500;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        i {
+            margin-left: 5px;
+        }
+    }
+}
+
+@include tablet-only {
+ 
+}
+
+@include mobile-only {
+    #photographer {
+        #sortBy , label[for="dropdownButton"]{
+        display: none;
+        }
+        #dropdown {
+            display: none;
+        }
+        #mediasList {
+            margin-top: 15%;
+        }
+        .totalLikesAndPricePhotograph {
+            display: none;
+        }
+        #lightboxModal {
+            .lightbox {
+                width: 95%;
+
+                height: 340px;
+                &-close {
+                    top: 4px;
+                    right: 19px;
+                    svg {
+                        width: 20px;
+                    }
+                }
+                &-media_image {
+                    height: 245px;
+                    width: 85%;
+                }
+                &-media_name {
+                    width: 85%;
+                    bottom: 12px;
+                    font-size: 1em;
+                }
+                &-arrow_left {
+                    left: -15px;
+                    svg {
+                        width: 15px;
+                    }
+                }
+                &-arrow_right {
+                    right: -15px;
+                    svg {
+                        width: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

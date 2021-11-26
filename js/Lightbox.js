@@ -1,132 +1,125 @@
-/**
- * @property {HTMLElement} element
- * @property {string[]} images Chemins des images de la Lightbox
- * @property {string} url Image actuellement affichée
- */
-export class Lightbox {
-	// initialisation de la lightbox
-	// Objectif :
-	// greffer un comportement sur tous les liens qui menent à des images (ET DES VIDEOS !!!). 
-	// Ouverture de la Lightbox lorsqu'on click sur un de ces liens
-	static init() {
+class Lightbox {
+    constructor(namePhotographe, listMedias){
+        this.namePhotographe = namePhotographe
+        this.listMedias = listMedias
+        this.lightbox = document.getElementById("lightboxModal")
+        this.lightboxBtnClose = document.querySelector("#lightboxModal .lightbox-close")
+        this.lightboxBtnLeft = document.querySelector("#lightboxModal .lightbox-arrow_left")
+        this.lightboxBtnRight = document.querySelector("#lightboxModal .lightbox-arrow_right")
+        this.listMediasDOM = document.querySelectorAll(".media-src")
+        this.emplacementImageLightbox = document.querySelector('.lightbox-media_image')
+        this.emplacementNameImageLightbox = document.querySelector('.lightbox-media_name')
+        this.main = document.getElementById("photographer")
+        this.index = 0
+        this.media = ""
+        this.displayLightbox()
+        this.arrowNext() 
+        this.arrowPrevious()
+        this.keyup(this.media)
+        this.closeLightbox()
 
-		const links = Array.from(document.querySelectorAll('.lightboxOn'));
-		const gallery = links.map(link => link.getAttribute('href'));
+    }
+    //Keyboard keys setup (escape, left & right arrows)
+    keyup() {
+        document.addEventListener("keyup", (e)=> {
+            if(e.key === "ArrowRight") {
+                this.changeDisplay(this.index + 1)
+            }
+            if(e.key === "ArrowLeft") {
+                this.changeDisplay(this.index - 1)            
+            }
+            if(e.key == "Escape") {
+                if(this.media !== ""){
+                    document.querySelector("#lightboxModal .lightbox").blur()
+                    this.lightbox.style.display= "none"
+                    this.main.setAttribute("aria-hidden", "false")
+                    this.lightbox.setAttribute("aria-hidden", "true")
+                }
+            }
+        })
+    }
 
-		links.forEach(link => link.addEventListener('click', e => {
-			e.preventDefault(); // strop le comportement par defaut
-			new Lightbox(e.currentTarget.getAttribute('href'), gallery); // permet de selectionner le lien sur lequel j'appuie et je recupere l'attribut "href"(urel du lien)
-		}));
-	}
+    //Close cross @ lightbox 
+    closeLightbox(){
+        this.lightboxBtnClose.addEventListener("click", ()=>{
+            this.lightbox.style.display= "none"
+            this.main.setAttribute("aria-hidden", "false")
+            this.lightbox.setAttribute("aria-hidden", "true")
+        })
+    }
 
-	//*********CONSTRUCTOR**********//
-	/**
-	 * @param {string} url url de l'image
-	 * @param {string[]} images Chemins des images de la Lightbox
-	 */
-	constructor(url, images) {
-		this.element = this.buildDOM(url);
-		this.images = images;
-		this.loadImage(url);
-		this.onKeyUp = this.onKeyUp.bind(this);
-		document.body.appendChild(this.element);
-		document.addEventListener('keyup', this.onKeyUp);
-	}
+    //Right/next btn @ lightbox
+    arrowNext() {
+        this.lightboxBtnRight.addEventListener("click", ()=> {
+        this.changeDisplay(this.index + 1)
+        })
+    }
 
-	//*********lOADIMAGE************//
-	/**
-	 * @param {string} url url de l'image
-	 */
-	loadImage(url) {
-		this.url = url;
-		const image = new Image();
-		const video = document.createElement('video');
-		const container = this.element.querySelector('.contentLB');
-		container.innerHTML = '';
-		const loader = document.createElement('div');
-		loader.classList.add('lightbox__loader');
-		loader.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"style = "margin: auto; background: none; display: block; shape-rendering: auto;" width = "200px" height = "200px" viewBox = "0 0 100 100" preserveAspectRatio = "xMidYMid" ><path d = "M17 50A33 33 0 0 0 83 50A33 34.6 0 0 1 17 50" fill = "#911616" stroke = "none"><animateTransform attributeName = "transform" type = "rotate" dur = "1.5384615384615383s" repeatCount = "indefinite" keyTimes = "0;1" values = "0 50 50.8;360 50 50.8"></animateTransform></path></svg>';
-		container.innerHTML = '';
-		container.appendChild(loader);
+    //Left/previous btn @ lightbox
+    arrowPrevious() {
+        this.lightboxBtnLeft.addEventListener("click", ()=> {
+            this.changeDisplay(this.index - 1)
+        })
+    }
 
-		if (url.includes('jpg')) {
-			container.appendChild(image);
-			image.src = url;
-			container.removeChild(loader);
-			return url
-		} else if (url.includes('mp4')) {
-			container.appendChild(video);
-			video.controls = true;
-			video.src = url;
-			container.removeChild(loader);
-			return url
-		}
-	}
+    //Media display alterations @ lightbox
+    changeDisplay(addition){
+        if(this.media !== "") {
+            this.index = addition
+            if(this.index == this.listMedias.length){
+                this.index = 0
+            }
+            if(this.index == -1){
+                this.index = this.listMedias.length-1
+            }
+            this.emplacementNameImageLightbox.innerHTML = this.listMedias[this.index].title
+            this.mediaImageOrVideo(this.listMedias[this.index])
+        }
+    }
 
-	/**
-	 * @param {KeyboardEvent} e 
-	 */
-	onKeyUp(e) {
-		if (e.key === 'Escape') {
-			this.close(e);
-		} else if (e.key === 'ArrowLeft') {
-			this.prev(e);
-		} else if (e.key === 'ArrowRight') {
-			this.next(e);
-		}
-	}
+    //Lightbox display
+    displayLightbox(){
+        this.listMediasDOM.forEach(media => {
+            let btn = media.parentElement
+            btn.addEventListener("click", ()=>{
+                btn.blur()//Remove media focus
+                this.lightbox.style.display= "block"
+                document.querySelector("#lightboxModal .lightbox").focus()//Set up media focus
+                this.media = btn
+                this.displayMedia(media.id)//Display picture or video 
+            })
+        });
+    }
 
-	/**
-	 * Ferme la Lightbox
-	 * @param {MouseEvent/KeyboardEvent} e 
-	 */
-	close(e) {
-		e.preventDefault();
-		this.element.classList.add('fadeOut');
-		window.setTimeout(() => {
-			this.element.parentElement.removeChild(this.element);
-		}, 500);
-		document.removeEventListener('keyup', this.onKeyUp);
-	}
-
-	/**
-	 * @param {MouseEvent/KeyboardEvent} e 
-	 */
-	next(e) {
-		e.preventDefault();
-		let i = this.images.findIndex(image => image === this.url);
-		if (i === this.images.length - 1) {
-			i = -1;
-		}
-		this.loadImage(this.images[i + 1]);
-	}
-
-	/**
-	 * @param {MouseEvent/KeyboardEvent} e 
-	 */
-	prev(e) {
-		e.preventDefault();
-		let i = this.images.findIndex(image => image === this.url);
-		if (i === 0) {
-			i = this.images.length;
-		}
-		this.loadImage(this.images[i - 1]);
-	}
-
-	//*********BUILDDOM**********//
-	/**
-	 * @param {string} url url de l'image
-	 * @return {HTMLElement}
-	 */
-	
-	buildDOM(url) {
-		const lightbox = document.createElement('div');
-		lightbox.classList.add('lightbox');
-		lightbox.innerHTML = '<button class="lightbox__closeLB">Fermer</button><button class="lightbox__nextLB">Suivant</button><button class="lightbox__prevLB">Précedent</button><div class="contentLB"></div>';
-		lightbox.querySelector('.lightbox__closeLB').addEventListener('click', this.close.bind(this));
-		lightbox.querySelector('.lightbox__nextLB').addEventListener('click', this.next.bind(this));
-		lightbox.querySelector('.lightbox__prevLB').addEventListener('click', this.prev.bind(this));
-		return lightbox;
-	}
+    //According to the media ID, I get the right one into the media list & display it @ lightbox
+    displayMedia(id) {
+        for (let index = 0; index < this.listMedias.length; index++) {
+            const element = this.listMedias[index];
+            if(element.id == id) {
+                this.index= index
+                this.mediaImageOrVideo(element)
+                this.emplacementNameImageLightbox.innerHTML = element.title
+            }
+        }
+    }
+    
+    //Display a picture or a video
+    mediaImageOrVideo(media){
+        if(media.image) {
+            let baliseImg = document.createElement("img")
+            baliseImg.setAttribute("src", "../img/"+ this.namePhotographe +"/"+ media.image)
+            baliseImg.setAttribute("alt", media.alt)
+            baliseImg.setAttribute("id", media.id)
+            baliseImg.setAttribute("tabindex", "0")
+            this.emplacementImageLightbox.replaceChild(baliseImg, this.emplacementImageLightbox.firstElementChild)
+        }else if (media.video){  
+            let baliseVideo = document.createElement("video")
+            let baliseVideoSrc = document.createElement("source")
+            baliseVideo.setAttribute("controls", "")
+            baliseVideoSrc.setAttribute("src", "../img/"+ this.namePhotographe +"/"+ media.video)
+            baliseVideoSrc.setAttribute("alt", media.alt)
+            this.emplacementImageLightbox.replaceChild(baliseVideo, this.emplacementImageLightbox.firstElementChild)
+            baliseVideo.appendChild(baliseVideoSrc)
+        }
+    }
 }
-Lightbox.init();

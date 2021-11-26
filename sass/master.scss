@@ -1,19 +1,14 @@
-//________________________________
-//MASTER__________________________
+@import 'base/colors';
+@import 'base/polices';
+@import 'utils/breakpoints';
+@import 'components/buttons';
+@import 'components/cardProfile';
+@import 'components/cardHeaderPhotograph';
+@import 'components/cardMedia';
+@import 'components/fomulaire';
+@import 'components/lightbox';
+@import 'layouts/header';
+@import 'pages/home';
+@import 'pages/photographer';
 
-@import "./1_Base/reset.scss";
-@import "./1_Base/typo.scss";
-@import "./2_Utils/mixins.scss";
-@import "./2_Utils/variables.scss";
-@import "./3_Layout/header.scss";
-@import "./3_Layout/main.scss";
-@import "./4_Components/cards.scss";
-@import "./4_Components/form.scss";
-@import "./4_Components/photoFrame.scss";
-@import "./4_Components/filter.scss";
-@import "./4_Components/album.scss";
-@import "./4_Components/keyframes.scss";
-@import "./4_Components/lightbox.scss";
-@import "./6_Themes/media_index.scss";
-@import "./6_Themes/media_photographer";
-@import "./6_Themes/media_formulaire.scss";
+

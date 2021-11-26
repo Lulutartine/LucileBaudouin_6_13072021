@@ -1,0 +1,140 @@
+#formulaire {
+    width: 100%;
+    height: 100%;
+    background-color:rgba($color: #FFF, $alpha: 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    form {
+        width: 40%;
+        min-height: auto;
+        max-height: 970px;
+        border-radius: 5px;
+        background-color: #DB8876;
+        box-shadow: -5px 10px 10px rgba($color: #000000, $alpha: 0.4);
+        opacity: 1;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        padding: 25px;
+        .formulaire-title {
+            font-size: 2.5em;
+            font-weight: 400;
+        }
+        #formulaire-namePhotographe {
+            margin-bottom: 10px;
+        }
+        .formulaire-close {
+            color: #FFF;
+            position: absolute;
+            right: 35px;
+            top: 35px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+        }
+        .formulaire-msgConfirm {
+            margin-top: 25px;
+            bottom: 20px;
+            font-size: 1.5em;
+            display: inline-block;
+            color: $primaryColor;
+            display: none;
+        }
+        .formData {
+            display: flex;
+            flex-direction: column;
+            label {
+                font-size: 1.1em;
+                margin-top: 10px;
+                color: #312E2E;
+            }
+            input {
+                display: block;
+                border: none;
+                height: 50px;
+                border-radius: 5px;
+                padding-left: 20px;
+                font-size: 1em;
+            }
+            input:focus-visible, textarea:focus-visible {
+                outline: none;
+            }
+            textarea {
+                border: none;
+                height: 130px;
+                border-radius: 5px;
+                padding-left: 20px;
+                padding-top: 20px;
+            }
+            .error {
+                border: solid 2px red;
+            }
+            .success {
+                border: solid 2px green;
+            }
+            small {
+                display: none;
+                color: red;
+                font-size: 0.6em;
+            }
+        }
+        input[type="submit"]{
+            width: 170px;
+            height: 69px;
+            background-color: $primaryColor;
+            border-radius: 5px;
+            color: #FFF;
+            margin-top: 36px;
+            border: none;
+        }
+    }
+  
+}
+
+@include mobile-only {
+    #formulaire {
+        form {
+            width: 375px;
+            height: 700px;
+            padding: 25px;
+
+            .formulaire-title {
+                font-size: 2em;
+            }
+            .formulaire-close {
+                cursor: pointer;
+                svg {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+            .formData {
+                label {
+                    font-size: 1em;
+                    margin-bottom: 5px;
+                }
+                input {
+                    width: 100%;
+                    height: 52px;
+                    padding-left: 0;
+                }
+                textarea {
+                    width: 100%;
+                    height: 100px;
+                    margin-top: 9px;
+                }
+            }
+
+            input[type="submit"]{
+                margin: 40px auto 0 auto;
+                width: 170px;
+                height: 35px;
+            }
+        }
+    }
+}

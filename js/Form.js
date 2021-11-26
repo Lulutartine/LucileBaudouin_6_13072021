@@ -1,245 +1,130 @@
-export class Form {
-   constructor(photographer) {
-      this.photographer = photographer;
-   }
-   createForm(photographer) {
-      const body = document.querySelector('body');
-      //Background
-      const bground = document.createElement('section');
-      const content = document.createElement('div');
-      bground.classList.add('bground');
-      content.classList.add('content');
-      //Cross (Escape)
-      const cross = document.createElement('span');
-      cross.classList.add('cross');
-      //Texte Format
-      const divContact = document.createElement('div');
-      const contactMe = document.createElement('span');
-      const up = document.createElement('br');
-      contactMe.classList.add('contactMe');
-      contactMe.innerHTML = 'Contactez-moi';
-      contactMe.setAttribute('aria-label','contactez moi');
-      //This.photographer.name
-      const photographerName = document.createElement('h3');
-      const modalbg = document.createElement('div');
-      photographerName.classList.add('titleName');
-      photographerName.innerHTML = this.photographer.name;
-      modalbg.classList.add('modalBody');
-      //FORM
-      const form = document.createElement('form');
-      form.id = 'send';
-      form.method = 'POST';
-      //===================================================
-      const firstname = document.createElement('div');
-      const lastname = document.createElement('div');
-      const email = document.createElement('div');
-      const txtFree = document.createElement('div');
-      firstname.classList.add('form-data');
-      lastname.classList.add('form-data');
-      email.classList.add('form-data');
-      txtFree.classList.add('form-data');
-      //===================================================
-      const labFirstname = document.createElement('label');
-      const labLastname = document.createElement('label');
-      const labEmail = document.createElement('label');
-      const labTxtFree = document.createElement('label');
-      labFirstname.innerHTML = 'Prénom';
-      labFirstname.setAttribute('for', 'first name');
-      labFirstname.setAttribute('aria-label', 'First name');
-      labLastname.innerHTML = 'Nom';
-      labLastname.setAttribute('for', 'last name');
-      labLastname.setAttribute('aria-label', 'Last name');
-      labEmail.innerHTML = 'Email';
-      labEmail.setAttribute('for', 'email');
-      labEmail.setAttribute('aria-label', 'Email');
-      labTxtFree.innerHTML = 'Votre message';
-      labTxtFree.setAttribute('for', 'txtFree');
-      labTxtFree.setAttribute('aria-label', 'Your message');
-      //===================================================
-      const inpFirstname = document.createElement('input');
-      const inpLastname = document.createElement('input');
-      const inpEmail = document.createElement('input');
-      const inpTxtFree = document.createElement('textarea');
-      inpFirstname.id = 'first';
-      inpFirstname.type = 'textarea';
-      inpFirstname.setAttribute('aria-labelledby', 'label_prenom');
-      inpLastname.id = 'last';
-      inpLastname.type = 'textarea';
-      inpLastname.setAttribute('aria-labelledby', 'label_nom');
-      inpEmail.type = 'email';
-      inpEmail.id = 'email';
-      inpEmail.setAttribute('aria-labelledby', 'label_email');
-      inpEmail.required = true;
-      inpTxtFree.id = 'txtFree';
-      inpTxtFree.setAttribute('aria-labelledby', 'label_message');
-      //===================================================
-      const sendBtn = document.createElement('button');
-      sendBtn.type = 'submit';
-      sendBtn.classList.add('send');
-      sendBtn.innerHTML = 'Envoyer';
-      sendBtn.setAttribute('aria-label', envoyer);
-      
-      form.append(firstname);
-      form.append(lastname);
-      form.append(email);
-      form.append(txtFree);
-      form.append(sendBtn);
-      //================================
-      firstname.append(labFirstname);
-      firstname.append(inpFirstname);
-      lastname.append(labLastname);
-      lastname.append(inpLastname);
-      email.append(labEmail);
-      email.append(inpEmail);
-      txtFree.append(labTxtFree);
-      txtFree.append(inpTxtFree);
-      //================================
-      body.append(bground);
-      bground.append(content);
-      bground.append(modalbg);
-      modalbg.append(form);
-      content.append(photographerName);
-      content.append(cross);
-      content.append(divContact);
-      divContact.append(contactMe);
-      divContact.append(up);
-      divContact.append(photographerName);
+//Contact form treatment
+class Formulaire {
+    constructor (data) {
+        this.btnContactMe = document.getElementById("btnContactMe")
+        this.main = document.getElementById("photographer")
+        this.formulaire = document.getElementById("formulaire")
+        this.formulaireNamePhotograph = document.getElementById("formulaire-namePhotographe")
+        this.data = data
+        this.firstname= document.querySelector("#prenom")
+        this.lastname= document.querySelector("#nom")
+        this.email= document.querySelector("#email")
+        this.message= document.querySelector("#message")
+        this.regexEmail=  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        this.regexMessage = /[A-Za-z0-9,-]/
+        this.regexMin = /^.{2,35}$/
+        this.formulaireName()
+        this.addEvent(this.firstname, this.regexMin, "Veuillez entrer 2 caractères ou plus pour le prénom.")
+        this.addEvent(this.lastname, this.regexMin, "Veuillez entrer 2 caractères ou plus pour le nom.")
+        this.addEvent(this.email, this.regexEmail, "Veuillez entrer une adresse e-mail valide.")
+        this.addEvent(this.message, this.regexMessage, "Veuillez entrer un message")
+        this.submitForm()
+        this.btnClose= document.querySelector(".formulaire-close")
+        this.closeForm()
+        this.openForm()
+    }
+    //Photograph name display @ form
+    formulaireName() {
+        this.formulaireNamePhotograph.innerHTML = this.data
+        this.formulaireNamePhotograph.setAttribute("aria-label", this.data)
+    }
+    //Form submission
+    submitForm(){
+        this.formulaire.addEventListener("submit", (e)=> {
+            e.preventDefault()
+            //if all fields are properly set up then form values are displayed & reset form
+            if( this.regexMin.test(this.firstname.value) &&
+                this.regexMin.test(this.lastname.value) &&
+                this.regexEmail.test(this.email.value) &&
+                this.regexMessage.test(this.message.value)){
+                    let data = {
+                        "prenom": this.firstname.value,
+                        "nom":  this.lastname.value,
+                        "email": this.email.value,
+                        "message": this.message.value
+                    }
+                    //Form values displayed @ console
+                    console.log(data)
 
-      //STATUS______________//
-      let setting = {
-         firstName: {
-            data: '',
-            status: false
-         },
-         lastName: {
-            data: '',
-            status: false
-         },
-         email: {
-            data: '',
-            status: false
-         },
-         txtFree: {
-            data: '',
-            status: false
-         }
-      };
+                    //Display confirmation message
+                    this.formulaire.querySelector(".formulaire-msgConfirm").style.display="block"
+                    setTimeout(() => {
+                        this.formulaire.querySelector(".formulaire-msgConfirm").style.display="none"
+                    }, 10000);
+                    //Form reset
+                    e.target.reset()
+                    const textControl = document.querySelectorAll(".text-control")
+                    textControl.forEach(element => {
+                        element.classList.remove("success")
+                    });
+                    
+                } else {
+                    //Error messages
+                    e.preventDefault()
+                    if(this.firstname.value == ""){
+                        let msgErreur = this.firstname.parentNode.childNodes[5]
+                        this.error(this.firstname, "Veuillez entrer 2 caractères ou plus pour le champ du prénom.", msgErreur)
+                    }
+                    if(this.lastname.value == ""){
+                        let msgErreur = this.lastname.parentNode.childNodes[5]
+                        this.error(this.lastname, "Veuillez entrer 2 caractères ou plus pour le champ du prénom.", msgErreur)
+                    }
+                    if(this.email.value == ""){
+                        let msgErreur = this.email.parentNode.childNodes[5]
+                        this.error(this.email, "Veuillez entrer 2 caractères ou plus pour le champ du prénom.", msgErreur)
+                    }
+                    if(this.message.value == ""){
+                        let msgErreur = this.message.parentNode.childNodes[5]
+                        this.error(this.message, "Veuillez entrer un message", msgErreur)
+                    }
+                }
+            })
+    }
+    //Close form
+    closeForm() {
+        this.btnClose.addEventListener("click", ()=>{
+            this.formulaire.style.display= "none"
+        })
+        document.addEventListener("keyup", (e)=> {
+            if(e.key == "Escape") {
+                this.formulaire.style.display= "none"
+            }
+        })
+    }
 
-      const checkForm = () => {
-         const sendBtn = document.querySelector('.send');
-         sendBtn.addEventListener('click', (event) => {
-            //STOP FOR CHECK
-            event.preventDefault();
+    //Open form @ "contact me" btn click
+    openForm() {
+        this.btnContactMe.addEventListener("click", ()=>{
+            this.formulaire.style.display= "flex"
+            this.formulaire.setAttribute("aria-hidden", "false")
+            this.main.setAttribute("aria-hidden", "true")
+            this.formulaire.querySelector("form").focus()
+        })
+    }
 
-            // Check first name
-            const checkInputFirstName = () => {
-               let errorFirstName = document.querySelector('.error');
-               if (firstName.value.length > 1) {
-                  setting.firstName.data = firstName.value;
-                  setting.firstName.status = true;
-                  firstName.parentNode.setAttribute("data-error-visible", "false");
-               } else {
-                  setting.firstName.data = firstName.value;
-                  setting.firstName.status = false;
-                  firstName.parentNode.setAttribute("data-error-visible", "true");
-                  errorFirstName.setCustomValidity("Veuillez entrer prenom de 2 caracteres ou plus");
-               }
+    //Check error or validation message @ field entry
+    addEvent(element, regex, textMsgErreur){
+        element.addEventListener("keyup",()=>{
+            let msgErreur = element.parentNode.childNodes[5]
+            if(regex.test(element.value)) {
+                this.success(element, msgErreur)
+            }else {
+                this.error(element, textMsgErreur, msgErreur )
             }
-            firstName.addEventListener('input', checkInputFirstName);
-            
-            // Check last name
-            const checkInputLastName = () => {
-               let errorLastName = document.querySelector('.error');
-               if (lastName.value.length > 1) {
-                  setting.lastName.data = lastName.value;
-                  setting.lastName.status = true;
-                  lastName.parentNode.setAttribute("data-error-visible", "false");
-               } else {
-                  setting.lastName.data = lastName.value;
-                  setting.lastName.status = false;
-                  lastName.parentNode.setAttribute("data-error-visible", "true");
-                  errorLastName.setCustomValidity("Veuillez entrer nom de 2 caracteres ou plus");
-               }
-            }
-            lastName.addEventListener('input', checkInputLastName);
-            
-            // Check email
-            const checkInputEmail = () => {
-               let errorEmail = document.querySelector('.error');
-               if (email.value.match(/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i)) {
-                  setting.email.data = email.value;
-                  setting.email.status = true;
-                  email.parentNode.setAttribute("data-error-visible", "false");
-               } else {
-                  setting.email.data = email.value;
-                  setting.email.status = false;
-                  email.parentNode.setAttribute("data-error-visible", "true");
-                  errorEmail.setCustomValidity("Veuillez entrer une adresse e-mail valide");
-               }
-            }
-            email.addEventListener('input', checkInputEmail);
+        })
+    }
+    
+    success(element, smallError) {
+        element.classList.add("success")
+        element.classList.remove("error") 
+        smallError.style.display="none" //delete error message
+    }
 
-            // Check message
-            const checkInputMessage = () => {
-               let errorMessage = document.querySelector('.error');
-               if (message.value.length > 1) {
-                  setting.message.data = lastName.value;
-                  setting.message.status = true;
-                  message.parentNode.setAttribute("data-error-visible", "false");
-               } else {
-                  setting.message.data = lastName.value;
-                  setting.message.status = false;
-                  message.parentNode.setAttribute("data-error-visible", "true");
-                  errorMessage.setCustomValidity("Veuillez entrer un message plus long");
-                  }
-            }
-            lastName.addEventListener('input', checkInputMessage);
-            }
-         ,);
+    error(element, messageError, smallError) {
+        element.classList.add("error")
+        element.classList.remove("success")
+        smallError.style.display="block" //display error message
+        smallError.innerHTML= messageError
+    }
 
-         // global check
-         const globalCheck = () => {
-            let valid = false;
-            for (let object in setting) {
-                  if (status == false) {
-                     valid = false;
-                     break;
-                  } else {
-                     valid = true;
-                  }
-               }
-            }
-         
-            if (valid == true) {
-               closeModal();
-            }
-            return valid;
-         }
-      }
-      checkForm();
-   };
-   handleStatus(); {
-      this.openForm();
-      this.closeForm();
-   };
-   //FORM_context
-   openForm(); {
-      const contact = document.querySelector('.contact');
-      contact.addEventListener('click', this.openForm);
-
-      const bground = document.querySelector('.bground');
-      const main = document.querySelector('main');
-      bground.style.display = 'block';
-      main.style.opacity = 0.3;
-
-      const input = document.querySelector('#first');
-      input.focus();
-   };
-   closeForm(); {
-      const cross = document.querySelector('.cross');
-      cross.addEventListener('click', this.closeForm);
-      const bground = document.querySelector('.bground');
-      const main = document.querySelector('main');
-      bground.style.display = 'none';
-      main.style.opacity = 1;
-   };
+}

@@ -2,19 +2,35 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FishEye est un site web qui permet aux photographes indépendants de présenter leurs meilleurs travaux">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" type="logo/svg" href="FishEye_Photos/fav_logo.png">
     <title>FishEye</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="icon" type="logo/svg" href="img/fav_logo.png">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <a href="#main" class="goToContent">Passer au contenu</a>
-    <header></header>
-    <main id=main></main>
-    
-    <script src="./js/index.js" type="module"></script>
+    <header class="header" role="banner">
+        <figure class="header-logo"><a href="#"><img src="img/logo.png" alt="Fisheye home page"></a></figure>
+        <a href="#homepage" class="goToContent">Passer au contenu</a>
+        <nav class="header-nav" id="header-nav" aria-label="Navigation photographers tags" role="header-nav" tabindex="0">
+            <ul aria-label="Navigation photographers tags">
+                <li><span class="header-btnTags btnTags" aria-label="portrait" tabindex="0">#Portrait</span></li>
+                <li><span class="header-btnTags btnTags" aria-label="art" tabindex="0">#Art</span></li>
+                <li><span class="header-btnTags btnTags" aria-label="fashion" tabindex="0">#Fashion</span></li>
+                <li><span class="header-btnTags btnTags" aria-label="architecture" tabindex="0">#Architecture</span></li>
+                <li><span class="header-btnTags btnTags" aria-label="travel" tabindex="0">#Travel</span></li>
+                <li><span class="header-btnTags btnTags" aria-label="sports" tabindex="0">#Sport</span></li>
+                <li><span class="header-btnTags btnTags" aria-label="animals" tabindex="0">#Animals</span></li>
+                <li><span class="header-btnTags btnTags" aria-label="events" tabindex="0">#Events</span></li>            
+            </ul>
+        </nav>
+        <h1 class="header-title" tabindex="0" aria-label="principal-title Nos photographes">Nos photographes</h1>
+    </header>
+    <main id="homepage">
+        <div class="photographsList" id="photographsList" aria-label="Photograph List" role="contain photograph list"></div>
+    </main>
+    <script src="js/GoToContent.js"></script>
+    <script src="js/CreateCardHomePage.js"></script>
+    <script src="js/Tag.js"></script>
 </body>
-
 </html>
