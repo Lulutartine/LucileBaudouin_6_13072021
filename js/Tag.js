@@ -48,18 +48,18 @@ class Tag {
     }
 }
 
-//regex pour vérifier si l'url contient un parametre tag
+//Regex to check if url includes tag setting
 let regTag = /\?tag=/i 
 
-// fonctionnalité des tags.
+//Tag feature
 setTimeout(() => {
-    //si l'url n'a pas de parametres alors les tags fonctionnent normalement
+    //if url doesn't inculde tag setting, tags act as usual 
     if(window.location.search == ""){
         let tagsAll = document.querySelectorAll(".btnTags")
         let tabCardsFilter = []
         for (let index = 0; index < tagsAll.length; index++) {
             let tag = tagsAll[index];
-            // Au click d'un tag j'affiche les photographes ayant ce même tag 
+            // as clicking, display all photographers with same tag
             tag.addEventListener("click", (e)=> {
                 let tagEvent = e.target
                 new Tag(tagEvent, tabCardsFilter)
@@ -72,9 +72,9 @@ setTimeout(() => {
             })  
         }
 
-    //sinon si l'url contient un parametre tag alors j'affiche les cards contenant le meme tag
+    //else, url includes tag setting => display cards with same tag
     } else if (regTag.test(window.location.search)) {
-        let tagAriaLabel = window.location.search.replace(/\?tag=/i, "")//valeur de tag
+        let tagAriaLabel = window.location.search.replace(/\?tag=/i, "")//tag value
         let tabCardsFilter = []
         let tag = document.querySelector('.btnTags[aria-label="'+ tagAriaLabel +'"]')
         new Tag(tag, tabCardsFilter)
